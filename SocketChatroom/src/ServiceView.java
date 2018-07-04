@@ -24,11 +24,14 @@ public class ServiceView extends JFrame implements ActionListener{
 
     private void initView() {
         btnOpen = new JButton("打开服务器");
+        btnOpen.setFont(new Font("黑体",Font.BOLD,20));
         btnStop = new JButton("关闭服务器");
+        btnStop.setFont(new Font("黑体",Font.BOLD,20));
         btnStop.setEnabled(false);
         btnOpen.addActionListener(this);
         btnStop.addActionListener(this);
         label = new JLabel("服务器停止工作");
+        label.setFont(new Font("黑体",Font.BOLD,20));
         add(label);
         add(btnOpen);
         add(btnStop);
@@ -68,7 +71,8 @@ public class ServiceView extends JFrame implements ActionListener{
                     socket.getInputStream().close();
                     socket.getOutputStream().close();
                 }
-                ClientMannager.sockets.removeAllElements();
+                for (ChatSocket socket : ClientMannager.sockets) 
+                	remove(this);
             }
 
 
